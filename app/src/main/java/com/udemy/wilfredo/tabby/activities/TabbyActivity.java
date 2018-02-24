@@ -8,12 +8,13 @@ import android.support.v7.widget.Toolbar;
 
 import com.udemy.wilfredo.tabby.R;
 import com.udemy.wilfredo.tabby.adapters.ViewPagerAdapter;
+import com.udemy.wilfredo.tabby.fragments.ListFragment;
+import com.udemy.wilfredo.tabby.interfaces.OnCreateNewPerson;
+import com.udemy.wilfredo.tabby.model.Person;
 
-public class TabbyActivity extends AppCompatActivity {
+public class TabbyActivity extends AppCompatActivity implements OnCreateNewPerson{
 
-    private TabLayout tabLayout;
     private ViewPager viewPager;
-    private ViewPagerAdapter adapter;
 
     // Índice de posición de los fragments
     public static final int PERSON_FORM_FRAGMENT = 0;
@@ -27,7 +28,7 @@ public class TabbyActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        tabLayout = findViewById(R.id.tabs);
+        TabLayout tabLayout = findViewById(R.id.tabs);
         tabLayout.addTab(tabLayout.newTab().setText("Form"));
         tabLayout.addTab(tabLayout.newTab().setText("List"));
 
@@ -49,8 +50,17 @@ public class TabbyActivity extends AppCompatActivity {
         });
 
         viewPager = findViewById(R.id.viewPager);
-        adapter = new ViewPagerAdapter(getSupportFragmentManager(),tabLayout.getTabCount());
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+    }
+
+    @Override
+    public void createNewPerson(Person person) {
+        ListFragment fragment = (ListFragment) getSupportFragmentManager().getFragments().get(PERSON_LIST_FRAGMENT);
+        // Llamamos al método de nuestro fragment
+        fragment.addPerson(person);
+        // Movemos el viewpager hacia el ListFragment para ver la persona añadida en el listView
+        viewPager.setCurrentItem(PERSON_LIST_FRAGMENT);
     }
 }

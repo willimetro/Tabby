@@ -3,4 +3,5 @@
     <string name="person_name">Person Name</string>
     <string name="person_country">Person Country</string>
     <string name="create_person">CREATE PERSON</string>
+    <string name="flag_country">Flag Country</string>
 </resources>

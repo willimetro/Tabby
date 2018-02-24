@@ -31,7 +31,16 @@ public class Country {
         this.countryCode = countryCode;
     }
 
-    public String getFlagURL(String countryCode) {
-        return "www.geognos.com/api/en/countries/flag/"+countryCode+".png";
+    public String getFlagURL() {
+        return "http://www.geognos.com/api/en/countries/flag/"+countryCode+".png";
+    }
+
+    /**
+     * Se sobreescribe el método toString para mostrar los nombres de los paises en el spinner
+     * @return {@link String} con el nombre del pais
+     */
+    @Override
+    public String toString() {
+        return countryName;
     }
 }
