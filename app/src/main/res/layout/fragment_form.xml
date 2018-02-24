@@ -1,12 +1,65 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.udemy.wilfredo.tabby.fragments.FormFragment">
+    tools:context=".fragments.FormFragment">
 
-    <TextView
+
+    <RelativeLayout
+        android:id="@+id/wrapper"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/buttonCreate"
+        android:layout_alignParentTop="true"
+        android:padding="24dp">
 
-</FrameLayout>
+
+        <TextView
+            android:id="@+id/textViewPersonName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/paddingTextView"
+            android:paddingRight="@dimen/paddingTextView"
+            android:text="@string/person_name" />
+
+
+        <EditText
+            android:id="@+id/editTextPersonName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textViewPersonName"
+            android:layout_marginTop="10dp"
+            android:inputType="textPersonName" />
+
+        <TextView
+            android:id="@+id/textViewCountry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/editTextPersonName"
+            android:layout_marginTop="25dp"
+            android:paddingLeft="@dimen/paddingTextView"
+            android:paddingRight="@dimen/paddingTextView"
+            android:text="@string/person_country" />
+
+        <Spinner
+            android:id="@+id/spinnerCountry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textViewCountry"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp" />
+
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/buttonCreate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorAccent"
+        android:text="@string/create_person"
+        android:textColor="@android:color/white" />
+
+</RelativeLayout>
